@@ -1,0 +1,301 @@
+.bgea {
+  background-image: url('~@/assets/img/homepage/bgpage.png');
+  height: 100%;
+  width: 100%;
+  position: relative; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+.bgea3 {
+  background-image: url('~@/assets/img/homepage/bgpage3.png');
+  height: 100%;
+  width: 100%;
+  position: relative; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+.bgea4 {
+  background-image: url('~@/assets/img/homepage/bgpage4.png');
+  height: 100%;
+  width: 100%;
+  position: relative; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+.checked {
+	color: $warning;
+}
+
+.ficon:hover{
+  color:  #ffffff;
+}
+
+.ftitle-gradient{
+background: #000000;
+background: -webkit-linear-gradient(to top, #000000 0%, #FFCC00 85%);
+background: -moz-linear-gradient(to top, #000000 0%, #FFCC00 85%);
+background: linear-gradient(to top, #000000 0%, #FFCC00 85%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; 
+} 
+
+ .fea-bg{ 
+ background : linear-gradient(to bottom right, #FFD59C,#FC9B42);
+ border: 0;
+ }
+
+
+
+.btlog {
+  border: none;color: black;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to top, #F98E00 0%, #FFF503 100%);
+  
+}
+
+
+.fomt {
+      font-size: 0.8rem;
+}
+.fomtea {
+      font-size: 1rem;
+}
+.fomt-title {
+      font-size: 1.3rem;
+}
+.fomt-value {
+      font-size: 1.5rem;
+}
+
+.fomt-value2 {
+      font-size: 1.3rem;
+}
+
+.fomt-text {
+      font-size: 0.8rem;
+}
+
+.fomt-text1 {
+      font-size: 0.7rem;
+}
+
+
+
+
+.btlog:hover{
+  background: #FFFFFF;
+}
+.ffooter{
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  text-align: left;
+  color: #000;
+}
+.ffooter2{
+  position: absolute;
+  left: 42%;
+  bottom: 5%;
+  text-align: left;
+  color: #000;
+}
+ .fnav{ 
+  position: absolute;
+  right: 6%;
+  top: 4.5%;
+  text-align: left;
+  color: #000;
+ }
+ .fnavli{
+  color: #3A425E;
+ }
+ .fnavli:hover{ 
+  color: $warning; 
+ }
+
+ .fnav:a{
+
+ } 
+ .fhead{ 
+  position: absolute;
+  left: 5%;
+  top: 2.5%;
+  text-align: left;
+  color: #000;
+ }
+
+ .sideatr1{ 
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  background-image: url('~@/assets/img/homepage/sideatr1.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  height: 100%;
+  width: 60%;
+  text-align: left;
+  color: #000;
+ }
+  .sideatr2{ 
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  background-image: url('~@/assets/img/homepage/sideatr2.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  height: 100%;
+  width: 35%;
+  text-align: left;
+  color: #000;
+ }
+
+ .fcontent{ 
+  position: absolute;
+  left: 5%;
+  top: 32%;
+  text-align: left;
+  color: #000;
+ }
+
+
+ .fcontent3{ 
+  position: absolute;
+  left: 45%;
+  top: 25%;
+  width: 100vh;
+  text-align: left;
+  color: #000;
+ }
+
+
+ .fcontent4{ 
+  position: absolute;
+  left: 38%;
+  top: 22%;
+  width: 100vh;
+  text-align: left;
+  color: #000;
+ }
+
+ .ffooter4{ 
+  position: absolute;
+  right: 0%;
+  bottom: 0%;
+  width: 100%; 
+  color: #000;
+ }
+
+
+ .ffooter4a{ 
+  position: absolute;
+  left: 0%;
+  width: 20%;
+  bottom: 0%;
+  width: 20%;
+  height: 100%; 
+  color: #000;
+ }
+ .fclose{ 
+  position: absolute;
+  left: 30%;
+  top: 3%;
+  text-align: left;
+  color: #000;
+ }
+
+ .flogin{ 
+  position: absolute;
+  left: 3%;
+  top: 26%;
+  width: 30%;
+  text-align: left;
+  color: #000;
+ }
+
+.ftitle{
+  width: 70%;
+  height: 70%; 
+}
+ 
+ .hideli{
+
+  list-style-image: none;
+  list-style: none;
+  list-style-type: none;
+ }
+ 
+
+
+/* MOBILE VERSION */
+@media only screen and (max-width: 600px) {
+.fline{
+  display: none;  
+}
+.ficon{  
+} 
+.fico{  
+} 
+.fnav{ 
+  top: 20%;
+  left: 10%;
+  right: 10%;
+}
+.fnavsider{
+  display: none;
+}
+} 
+
+
+/* LAPTOP VERSION */
+@media only screen and (max-width: 1200px) {
+.fline{
+  width: 13rem;
+  height: 1rem;
+}  
+.ficon{ 
+  font-size: 31px;
+}
+.fico{ 
+  font-size: 21px;
+}
+.fnav{ 
+ font-size: 17px;
+ right: 1%;
+}
+.ftitle{
+  width: 50%;
+  height: 50%; 
+}
+.fnavsider{
+  width: 60%;
+  height: 60%; 
+}
+
+}
+
+/* DESKTOP VERSION */
+@media only screen and (min-width: 1200px) {
+.fline{
+  width: 20rem;
+  height: 2rem;
+}  
+.ficon{ 
+  font-size: 41px;
+}
+.fico{ 
+  font-size: 31px;
+}
+.fnav{ 
+ font-size: 20px;
+} 
+.fnavsider{
+  width: 70%;
+  height: 70%; 
+}
+}

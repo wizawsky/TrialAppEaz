@@ -1,0 +1,46 @@
+<template>
+    <!-- Page Wrapper -->
+    <div id="wrapper">  
+     <side-bar/>
+        <div id="content-wrapper" class="d-flex flex-column"> 
+            <div id="content"> 
+                        <top-bar/>
+                        <h1> {{myVar}}</h1>
+
+
+                        <content-dashboard/> 
+
+
+            </div>  
+            <foo-ter/>
+          </div> 
+    </div> 
+   <logout-modal/> 
+    </template> 
+        <script>  
+ 
+        import ContentDashboard from '@/views/test/Indexia.vue'
+        import SideBar from '@/components/Sidebar.vue'
+        import LogoutModal from '@/components/LogoutModal.vue'
+        import TopBar from '@/components/Topbar.vue'
+        import FooTer from '@/components/Footer.vue'
+ 
+
+        export default { 
+          data() {
+            return {
+            imgPackage: this.$ownAddress+'img/logo1.png'
+            }
+        }, 
+        setup(){             
+        },
+          name:   "",
+          components: { 
+            ContentDashboard,
+            SideBar,
+            LogoutModal,
+            FooTer,
+            TopBar
+          }
+        }
+        </script>
