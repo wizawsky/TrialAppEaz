@@ -5,7 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "standard": "standard index.js",
+    "test": "nyc ./node_modules/.bin/ava -v"
   },
   "dependencies": {
     "axios": "^0.21.0",
@@ -14,6 +17,7 @@
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
+    "travis": "^0.1.1",
     "vue": "^3.0.0",
     "vue-chart-3": "^0.5.11",
     "vue-chartjs": "^3.5.1",
@@ -29,7 +33,13 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
     "sass": "^1.43.4",
-    "sass-loader": "^7.1.0"
+    "sass-loader": "^7.1.0",
+    "ava": "^0.16.0",
+    "co-exec": "^1.0",
+    "codecov": "^1.0.1",
+    "ghooks": "^1.2.4",
+    "nyc": "^10.0.0",
+    "standard": "^8.4.0"
   },
   "eslintConfig": {
     "root": true,
@@ -49,5 +59,10 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run standard"
+    }
+  }
 }
