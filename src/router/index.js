@@ -30,7 +30,7 @@ const routes = [
     {
         path: landing2,
         name: landingn2,
-        component: () => import( '@/views/landing/PageLanding.vue'),
+        component: HomePage2,
             meta: {
             title: myvar + ' - Dashboard'            
     }
@@ -49,7 +49,7 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        component: HomePage2,
+        component: () => import( '@/views/landing/PageLanding.vue'),
             meta: {
             title: myvar + ' - Dashboard'            
     }
