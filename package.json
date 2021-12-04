@@ -9,6 +9,10 @@
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "standard": "standard index.js",
     "test": "nyc ./node_modules/.bin/ava -v"
+  },  
+  "engines": {
+    "npm": ">=6.0.0",
+    "node": ">=10.0.0"
   },
   "dependencies": {
     "axios": "^0.21.0",
