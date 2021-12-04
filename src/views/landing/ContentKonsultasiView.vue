@@ -23,11 +23,11 @@
                          -->
                     <div class="col-lg-12 mb-2"  v-if="productall">  
                         <div class="row d-flex justify-content-end">
-                                <div class="col-md-6">
-                            <button class="btn btn-md btn-oatas shadow"  @click.prevent="onRefresh()">
+                                <div class="col-md-6 mb-2">
+                            <button class="btn btn-md btn-oatas shadow mb-2"  @click.prevent="onRefresh()">
                                 <i class="fa fa-sync-alt" aria-hidden="true"></i>
                             </button>
-                            &nbsp; <div class="btn-group dropup">
+                            &nbsp; <div class="btn-group dropup mb-2">
                                               <button type="button" class="btn btn-oatas btn-md dropdown-toggle shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                               <i class="fa fa-list-ul" aria-hidden="true"></i>  Per Page
                                               </button>
@@ -38,18 +38,18 @@
                                                 <a class="dropdown-item" href="#"  @click.prevent="perpage(25)" >1 - 25</a> 
                                               </div>
                                         </div>&nbsp;   
-                             <button class="btn btn-md btn-oatas shadow" v-on:click="onProductAdd">
+                             <button class="btn btn-md btn-oatas shadow mb-2" v-on:click="onProductAdd">
                                   <i class="far fa-plus-square" aria-hidden="true"></i>  Tambah
                             </button> &nbsp;
 
 
-                            <button class="btn btn-md  btn-oatas shadow"  @click.prevent="test()">
+                            <button class="btn btn-md  btn-oatas shadow mb-2"  @click.prevent="test()">
                                 TEST
                             </button>  
                             &nbsp; 
-                            <button class="btn btn-sm  btn-oatas shadow" v-if="sortby.loading" >
+                            <button class="btn btn-sm  btn-oatas shadow mb-2" v-if="sortby.loading" >
 
-                             <div class="spinner-border spinner-border-sm" role="status">
+                             <div class="spinner-border spinner-border-sm mb-2" role="status">
                               <span class="sr-only">Loading...</span>
                             </div> Loading... 
                             </button>  
