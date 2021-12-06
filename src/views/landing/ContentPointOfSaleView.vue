@@ -237,7 +237,7 @@
                         </div>
 
 
-                        <div class="col-lg-12 m-0 p-0 card-body shadow-sm text-biasa container-fluid row d-flex align-items-center text-center">
+                        <div class="col-lg-12 m-0 mb-5 p-0 card-body shadow-sm text-biasa container-fluid row d-flex align-items-center text-center">
  
                                 <div class="col-md-2 bg-white border-right"><div class="fomt-value1  text-biasa"><br><br>Produk Terlaris<br><br><br></div>  </div>                                
                                 <div class="col-md-10 bg-oatas row d-flex  m-0 p-0 "> 
