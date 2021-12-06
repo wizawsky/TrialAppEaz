@@ -79,15 +79,20 @@ export default defineComponent({
       options,
     });
 
-    axios.post(props.host+'chart/line')
+             let data1 = [45, 80, 43, 31, 38, 11]
+             let data2 =  ["15-25", "26-35", "36-45", "46-55", "56-65","66-75"];
+             setdata(data1,data2) 
+
+    axios.post(props.host+'chart/bar')
             .then(response => {   
-             let data1 = response.data.data.customer
-             let data2 = response.data.data.date
+             data1 = response.data.data.customer
+             data2 = response.data.data.date
              setdata(data1,data2)
 
             }).catch(error => {
                 console.log(error.response.data)
             })
+
     function shuffleData() {
       data.value = shuffle(data.value);
       legendTop.value = !legendTop.value; 

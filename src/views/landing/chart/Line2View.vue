@@ -1,3 +1,4 @@
+@@ -1,126 +0,0 @@
 <template><!--
     <div class="">
       <button  class="btn btn-sm btn-secondary"  @click="shuffleEa"> <i class="fa fa-sync-alt" aria-hidden="true"></i></button>&nbsp;
@@ -17,7 +18,10 @@ export default defineComponent({
   components: {
     LineChart,
   },
-  setup() {
+  props: {
+    host: String
+  },
+  setup(props) { 
     const data = ref([30]);
     const labelz = ref( ["01 Mei"]);
     const legendTop = ref(true);
@@ -94,7 +98,7 @@ export default defineComponent({
       chartData,
       options,
     }); 
-     axios.post('http://localhost:8000/api/chart/line')
+     axios.post(props.host+'chart/line')
             .then(response => {   
              let data1 = response.data.data.customer
              let data2 = response.data.data.date
@@ -114,23 +118,8 @@ export default defineComponent({
       data.value =  $data1
       labelz.value =  $data2 
     }
-
-    function shuffleEa() {
-      let data1 = [0];
-      let data2 = ["01 Mei"] 
-     axios.post('http://localhost:8000/api/chart/line')
-            .then(response => {   
-             data1 = response.data.data.customer
-             data2 = response.data.data.date
-             setdata(data1,data2)
-
-            }).catch(error => {
-                console.log(error.response.data)
-            })
-
-      legendTop.value = !legendTop.value; 
-    }
-    return {data,shuffleEa,setdata, labelz,shuffleData, lineChartProps, lineChartRef, imgData };
+ 
+    return {data,setdata, labelz,shuffleData, lineChartProps, lineChartRef, imgData };
   }, 
 
 });

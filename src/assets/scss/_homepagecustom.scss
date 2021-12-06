@@ -47,7 +47,34 @@ background: linear-gradient(to top, #000000 0%, #FFCC00 85%);
  border: 0;
  }
 
+.btpay {
+  border: none;color: black;
+  border-radius: 5px; 
+  background: linear-gradient(to top, #F98E00 0%, #FFF503 100%);
+  
+}
+.btred{
+  border-radius: 5px; 
+  background: #FDD6D6;
+}
+.btkat { 
+  color: #FCA22C;
+  border-radius: 5px; 
+  background: #ffffff; 
+}
 
+.btkat:hover{
+  color: #000000;
+  border-radius: 5px; 
+  background: linear-gradient(to top, #FCE8CF 0%, #FCA22C 100%);
+}
+
+
+.btkaton { 
+  border-radius: 5px; 
+  background: linear-gradient(to top, #FCE8CF 0%, #FCA22C 100%);
+  
+}
 
 .btlog {
   border: none;color: black;
@@ -82,6 +109,10 @@ background: linear-gradient(to top, #000000 0%, #FFCC00 85%);
 .fomt-text1 {
       font-size: 0.7rem;
 }
+.fomt-text2{
+      font-size: 0.7rem;
+}
+
 
 
 
@@ -158,20 +189,12 @@ background: linear-gradient(to top, #000000 0%, #FFCC00 85%);
  .fcontent{ 
   position: absolute;
   left: 5%;
-  top: 32%;
+  top: 28%;
   text-align: left;
   color: #000;
  }
 
-
- .fcontent3{ 
-  position: absolute;
-  left: 45%;
-  top: 25%;
-  width: 100vh;
-  text-align: left;
-  color: #000;
- }
+ 
 
 
  .fcontent4{ 

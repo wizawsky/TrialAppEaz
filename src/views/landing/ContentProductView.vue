@@ -24,11 +24,11 @@
                     <div class="col-lg-12 mb-2"  v-if="productall">  
                         <div class="row d-flex justify-content-end">
                                 <div class="col-md-6 mb-2">
-                            <button class="btn btn-md btn-oatas shadow mb-2"  @click.prevent="onRefresh()">
+                            <button class="btn btn-md btn-oatas shadow-sm mb-2"  @click.prevent="onRefresh()">
                                 <i class="fa fa-sync-alt" aria-hidden="true"></i>
                             </button>
                             &nbsp; <div class="btn-group dropup mb-2">
-                                              <button type="button" class="btn btn-oatas btn-md dropdown-toggle shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              <button type="button" class="btn btn-oatas btn-md dropdown-toggle shadow-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                               <i class="fa fa-list-ul" aria-hidden="true"></i>  Per Page
                                               </button>
                                               <div class="dropdown-menu">
@@ -38,16 +38,16 @@
                                                 <a class="dropdown-item" href="#"  @click.prevent="perpage(25)" >1 - 25</a> 
                                               </div>
                                         </div>&nbsp;   
-                             <button class="btn btn-md btn-oatas shadow mb-2" v-on:click="onProductAdd">
+                             <button class="btn btn-md btn-oatas shadow-sm mb-2" v-on:click="onProductAdd">
                                   <i class="far fa-plus-square" aria-hidden="true"></i>  Tambah
                             </button> &nbsp;
 
 
-                            <button class="btn btn-md  btn-oatas shadow mb-2"  @click.prevent="test()">
+                            <button class="btn btn-md  btn-oatas shadow-sm mb-2"  @click.prevent="test()">
                                 TEST
                             </button>  
                             &nbsp; 
-                            <button class="btn btn-sm  btn-oatas shadow mb-2" v-if="sortby.loading" >
+                            <button class="btn btn-sm  btn-oatas shadow-sm mb-2" v-if="sortby.loading" >
 
                              <div class="spinner-border spinner-border-sm mb-2" role="status">
                               <span class="sr-only">Loading...</span>
@@ -73,7 +73,7 @@
                         </div>
 
                                 <div class="col-md-3"> 
-                        <div class="input-group shadow">
+                        <div class="input-group shadow-sm">
                             <input type="text"  v-model="name" class="form-control bg-white border-0 small" placeholder="Produk Name..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
@@ -108,7 +108,7 @@
                             <!--- GET DATA NOT FIRST TIME -->
                                 <tbody class="card-body text-biasa border-0">
                                      <tr v-for="(post, index) in filterProducts.slice(ffrom,fto)" :key="index" :class="{ 'border-top' : index != 0 }"> 
-                                    <td class="text-center">{{ index}}</td>
+                                    <td class="text-center">{{ index+ffrom+1}}</td>
                                     <td>&nbsp;{{ post.id }}</td>
                                     <td>{{ post.nama }}</td> 
                                     <td>{{ post.kode }}</td>
@@ -300,7 +300,7 @@ export default {
      let duata = [] 
      let posz = 7  // DATA UNTUK DITAMPILKAN
 
-        axios.get('http://localhost:8000/api/produk/')
+        axios.get(this.$laravel+'produk/')
             .then(response => {   
              this.duata = response.data.data
              ea = this.duata.length/this.posz

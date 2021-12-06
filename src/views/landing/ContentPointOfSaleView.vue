@@ -148,7 +148,7 @@
                             <div class="card shadow mb-4"> 
                                 <div class="card-body">  
                                     <h6 class="m-0 mb-2 font-weight-bold text-biasa">Statistik Penjualan &nbsp;&nbsp;<small>(01 Mei 2021 sd 10 Mei 2021)</small></h6>
-                                  <line-view /> 
+                                  <line-view :host="host" /> 
                                 </div>
                             </div>
 
@@ -312,12 +312,11 @@
 </template> 
  <script>   
 import LineView from '@/views/landing/chart/Line2View.vue'
-    export default {
-    name: "content-dashboard",
+    export default { 
     data() {
       return {
-        imgProfile: this.$ownAddress+'img/prinny.png',
-        msg: "Content Dashboard"
+        imgProfile:  require('@/assets/'+'img/'+'prinny.png'), 
+        host: this.$laravel,
       };
     },
 

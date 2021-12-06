@@ -32,7 +32,7 @@
         export default { 
           data() { 
             return {
-            imgPackage: require('@/assets/'+'img/'+'logo1.png'),  
+            imgPackage: require('@/assets/'+'img/'+'logo1.png'), 
 
             }
         }, 

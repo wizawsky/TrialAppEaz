@@ -96,6 +96,11 @@ export default defineComponent({
       chartData,
       options,
     }); 
+
+             let data1 =  [50, 10, 60, 70, 5,11,21];
+             let data2 =  ["01 Mei", "02 Mei", "03 Mei", "04 Mei", "05 Mei", "06 Mei", "07 Mei"];
+             setdata(data1,data2)
+
      axios.post(props.host+'chart/line')
             .then(response => {   
              let data1 = response.data.data.customer
@@ -116,23 +121,9 @@ export default defineComponent({
       data.value =  $data1
       labelz.value =  $data2 
     }
-
-    function shuffleEa() {
-      let data1 = [0];
-      let data2 = ["01 Mei"] 
-     axios.post('http://localhost:8000/api/chart/line')
-            .then(response => {   
-             data1 = response.data.data.customer
-             data2 = response.data.data.date
-             setdata(data1,data2)
-
-            }).catch(error => {
-                console.log(error.response.data)
-            })
-
-      legendTop.value = !legendTop.value; 
+    return{
+      shuffleData,lineChartProps
     }
-    return {data,shuffleEa,setdata, labelz,shuffleData, lineChartProps, lineChartRef, imgData };
   }, 
 
 });

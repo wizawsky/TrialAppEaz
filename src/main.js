@@ -11,10 +11,9 @@ import 'bootstrap/dist/js/bootstrap.min'
  
 
 const app = createApp(App)
-app.use(router)
-app.config.globalProperties.$appName = "FINDY’S MARVA"
-app.config.globalProperties.$menuClick = "A"
+app.config.globalProperties.$appName = "FINDY’S MARVA" 
 app.config.globalProperties.$ownAddress = 'http://localhost:8080/'
-app.config.globalProperties.$laravel = 'http://192.168.43.13:8000/api/'
+app.config.globalProperties.$laravel = 'http://localhost:8000/api/'
+app.use(router)
 //http://localhost:8080/ http://192.168.43.13:8000
 app.mount('#app')

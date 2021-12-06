@@ -1,6 +1,7 @@
 //import vue router
 import { createRouter, createWebHistory } from 'vue-router'
 
+/*
 const Login = () => import("@/views/post/Login.vue");
 const TestHome = () => import( '@/components/LandingPage.vue');
 const Dashboard = () => import( '@/layout/landing/Dashboard.vue');
@@ -9,56 +10,39 @@ const Therapist = () => import( '@/layout/landing/Therapist.vue');
 const Konsultasi = () => import( '@/layout/landing/Konsultasi.vue');
 const ProductView = () => import( '@/layout/landing/ProductView.vue');
 const PointOfSale = () => import( '@/layout/landing/PointOfSale.vue');
+*/
 //const HomePage = () => import( '@/layout/homepage.vue');
-const HomePage2 = () => import( '@/layout/homepage2.vue');
-const About = () => import( '@/layout/about.vue');
-const Product = () => import( '@/layout/product.vue');
-const Contact = () => import( '@/layout/contact.vue');
+//const About = () => import( '@/layout/about.vue');
+//const Product = () => import( '@/layout/product.vue');
+//const Contact = () => import( '@/layout/contact.vue');
+//const myvarz = "Findy's Marva";
+//define a routes
 
 
 
-const landing2 = "/landing2/";
-const landingn2 = "landing2.dashboard";
+const HomePage = () => import( '@/layout/homepage.vue');
+const LandingPage =  () => import( '@/views/landing/PageLanding.vue');
+
+ 
 
 
 const myvar = "Findy's Marva";
-const myvarz = "Laravlee Trial";
-//define a routes
 
 const routes = [
 
     {
-        path: landing2,
-        name: landingn2,
-        component: HomePage2,
-            meta: {
-            title: myvar + ' - Dashboard'            
-    }
-    },  
-
-
-    {
-        path: '/post',
-        name: 'post.index',
-        component: () => import( '@/views/post/Index.vue'),
-            meta: {
-            title: myvar + ' - Dashboard'            
-    }
-    },  
-
-    {
         path: '/',
         name: 'home',
-        component: () => import( '@/views/landing/PageLanding.vue'),
+        component: HomePage,
             meta: {
-            title: myvar + ' - Dashboard'            
+            title: myvar + ''            
     }
     },   
 
     {
         path: '/about',
         name: 'about',
-        component: About,
+        component: HomePage,
             meta: {
             title: myvar + ' - About'            
     }
@@ -66,7 +50,7 @@ const routes = [
     {
         path: '/product',
         name: 'product',
-        component: Product,
+        component: HomePage,
             meta: {
             title: myvar + ' - Product'            
     }
@@ -74,15 +58,31 @@ const routes = [
     {
         path: '/contact',
         name: 'contact',
-        component: Contact,
+        component: HomePage,
             meta: {
             title: myvar + ' - Contact'            
     }
     },  
 
+    {
+        path: "/landing/",
+        name: "landing",
+        component:LandingPage,
+        meta: {
+            title: myvar + ' - Dashboard'            
+        },
+        children: [ 
+                { path: 'dashboard', component: LandingPage, meta: {title: myvar + ' - Dashboard'}, }, 
+                { path: 'customer', component: LandingPage, meta: {title: myvar + ' - Customer'}, }, 
+                { path: 'konsultasi', component: LandingPage, meta: {title: myvar + ' - Konsultasi Dokter'}, }, 
+                { path: 'therapist', component: LandingPage, meta: {title: myvar + ' - Therapist'}, }, 
+                { path: 'product', component: LandingPage, meta: {title: myvar + ' - Product'}, }, 
+                { path: 'transaction', component: LandingPage, meta: {title: myvar + ' - Transaction'}, }, 
+                { path: 'pointofsale', component: LandingPage, meta: {title: myvar + ' - Point Of Sale'}, }, 
+        ]
+    },  
 
-
-    //Landing Page
+    /*
     {
         path: '/landing/',
         name: 'landing.index',
@@ -152,6 +152,8 @@ const routes = [
         name: 'post.login', 
         component: Login
     }
+    */
+
 ]
 
 //create router

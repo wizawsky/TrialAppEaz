@@ -1,9 +1,122 @@
 <template>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-     
+    
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" role="document"> 
+
+    <div class="modal-content  border-0" v-if="vform==1">
+      <div class="modal-header  border-0 bg-oatas text-biasa  ">
+        <h5 class="modal-title  font-weight-bold" id="exampleModalLongTitle">Edit Customer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="exampleInputEmail1">No. Member</label>
+              <input type="email" class="form-control" v-model="cust.idm" placeholder="Nomor Member"> 
+            </div> 
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nama</label>
+              <input type="email" class="form-control" v-model="cust.nama" placeholder="Nama Member"> 
+            </div> 
+            <div class="form-group">
+              <label for="exampleInputEmail1">NIK</label>
+              <input type="email" class="form-control"  v-model="cust.nik"   placeholder="NIK"> 
+            </div> 
+            <div class="form-group">
+              <label for="exampleInputEmail1">Alamat</label>
+              <input type="email" class="form-control"  v-model="cust.alamat" placeholder="Alamat"> 
+            </div> 
+            <div class="form-group">
+              <label for="exampleInputEmail1">No. HP</label>
+              <input type="email" class="form-control"  v-model="cust.nohp"  placeholder="No. HP"> 
+            </div>  
+            <div class="form-group">
+              <label for="exampleInputEmail1">Status</label>
+              <select class="form-control" v-model="cust.status">
+                <option>Therapist</option>
+                <option>Konsultasi Dokter</option>
+                <option>Treatment</option>
+                <option>Selesai</option> 
+              </select>
+            </div>  
+      </div> 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-oatas"  data-dismiss="modal" @click="update(cust)">Save changes</button>
+      </div>
+    </div>
+
+
+        <div class="modal-content  border-0" v-if="vform==2">
+      <div class="modal-header  border-0 bg-oatas text-biasa  ">
+        <h5 class="modal-title  font-weight-bold" id="exampleModalLongTitle">Add Customer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="exampleInputEmail1">No. Member</label>
+              <input type="email" class="form-control" v-model="cust.idm" placeholder="Nomor Member"> 
+            </div> 
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nama</label>
+              <input type="email" class="form-control" v-model="cust.nama" placeholder="Nama Member"> 
+            </div> 
+            <div class="form-group">
+              <label for="exampleInputEmail1">NIK</label>
+              <input type="email" class="form-control"  v-model="cust.nik"   placeholder="NIK"> 
+            </div> 
+            <div class="form-group">
+              <label for="exampleInputEmail1">Alamat</label>
+              <input type="email" class="form-control"  v-model="cust.alamat" placeholder="Alamat"> 
+            </div> 
+            <div class="form-group">
+              <label for="exampleInputEmail1">No. HP</label>
+              <input type="email" class="form-control"  v-model="cust.nohp"  placeholder="No. HP"> 
+            </div>  
+            <div class="form-group">
+              <label for="exampleInputEmail1">Status</label>
+              <select class="form-control" v-model="cust.status">
+                <option>Therapist</option>
+                <option>Konsultasi Dokter </option>
+                <option>Treatment</option>
+                <option>Selesai</option> 
+              </select>
+            </div>  
+      </div> 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-oatas"  data-dismiss="modal" @click="add(cust)">Add Customer</button>
+      </div>
+    </div>
+
+  </div> 
+</div>
                     <!-- Content Row -->
-                    <div class="row"  v-if="vform==0"> 
+                    <div class="row">
+
+                    <!--
+                        <div class="col-lg-12 mb-4">
+                        <button v-on:click="onProductAll" class="btn-sm btn btn-secondary">Lihat Semua Produk</button>
+                            &nbsp;&nbsp;
+                            <button v-on:click="onProductAdd"  class="btn-sm btn btn-secondary">Tambah Produk</button>
+                        &nbsp;&nbsp;
+                        <button v-on:click="onProductGet"  class="btn-sm btn btn-secondary">Lihat Produk</button> 
+
+                        </div>
+                         -->
+
+                        <!--
+ 
+                            PRODUK ALL HERE 
+
+                         -->
                     <div class="col-lg-12 mb-2" >  
                         <div class="row d-flex justify-content-end">
                                 <div class="col-md-6 mb-2">
@@ -84,7 +197,7 @@
                                      <tr v-for="(post, index) in filterProducts.slice(ffrom,fto)" :key="index" :class="{ 'border-top' : index != 0 }"> 
                                     <td class="text-center">{{ index+ffrom+1}}</td>
                                     <td>{{ post.idm }}</td>
-                                    <td   v-on:click="showEditCustomer(index)" >{{ post.nama }}</td> 
+                                    <td   v-on:click="showEditCustomer(index)" data-toggle="modal" data-target="#exampleModalCenter" >{{ post.nama }}</td> 
                                     <td>{{ post.kunjungan }}</td> 
                                     <td>{{ post.nohp }}</td>
                                     <td>  
@@ -118,95 +231,29 @@
                             <!--- GET DATA NOT FIRST TIME --> 
                                 </table>
 
-                            </div> 
-                    </div> 
-                        </div>
-
-
-
-
-    <!-- Content Row -->
-                    <div class="row" v-if="vform==1"> 
-                    <div class="col-lg-12 mb-2" >  
-                        <div class="row d-flex justify-content-end">
-                                <div class="col-md-6 mb-2">
-                            
-                             <button class="btn btn-md btn-oatas shadow-sm mb-2" v-on:click="backMenu()" >
-                                  <i class="fas  fa-chevron-left" aria-hidden="true"></i>  Kembali
-                            </button>    
-                            &nbsp; 
-                            <button class="btn btn-sm  btn-oatas shadow-sm mb-2" v-if="sortby.loading" > 
-                             <div class="spinner-border spinner-border-sm mb-2" role="status">
-                              <span class="sr-only">Loading...</span>
-                            </div> Loading... 
-                            </button>  
-                            </div>  <div class="col-md-6 mb-2"></div>                               
-                         </div> 
-                        </div>
-
-                    <div class="col-lg-12 mb-4  border-0"  > 
-                     <div class="card shadow mb-4 border-0 pb-5">
-                                   <div class="card-header py-3 bg-oatas border-0 text-biasa font-weight-bold">
-                                       Detail Customer
-                                   </div>
-                                   <div class="card-body p-2 border-0 text-biasa">
-                                       <div class="row">
-                                        <div class="col-lg-6 px-4 py-2" style="color: #F98E00">
-                                            
-                                             <div class="form-group">
-                                              <label>No. Member</label>
-                                              <input type="text" class="form-control bg-gray-100 border-0 shadow-sm" v-model="cust.idm" placeholder="Nomor Member" disabled> 
-                                            </div> 
-                                            <div class="form-group">
-                                              <label>Nama</label>
-                                              <input type="text" class="form-control bg-gray-100 border-0 shadow-sm" v-model="cust.nama" placeholder="Nama Member" disabled> 
-                                            </div> 
-                                            <div class="form-group">
-                                              <label >NIK</label>
-                                              <input type="text" class="form-control bg-gray-100 border-0 shadow-sm"  v-model="cust.nik"   placeholder="NIK" disabled> 
-                                            </div> 
-                                            <div class="form-group">
-                                              <label for="exampleInputtext1">Alamat</label>
-                                              <input type="text" class="form-control bg-gray-100 border-0 shadow-sm"  v-model="cust.alamat" placeholder="Alamat" disabled> 
-                                            </div> 
-                                            <div class="form-group">
-                                              <label for="exampleInputtext1">No. HP</label>
-                                              <input type="text" class="form-control bg-gray-100 border-0 shadow-sm"  v-model="cust.nohp"  placeholder="No. HP" disabled> 
-                                            </div>  
-                                            <div class="form-group">
-                                              <label for="exampleInputtext1">Status</label>
-                                              <select class="form-control bg-gray-100 border-0 shadow-sm" v-model="cust.status" disabled>
-                                                <option>Therapist</option>
-                                                <option>Konsultasi Dokter</option>
-                                                <option>Treatment</option>
-                                                <option>Selesai</option> 
-                                              </select>
-                                            </div>  
-
-                                        </div>
-                                        <div class="col-lg-6  pr-5 py-3 text-right">
-                                              <div class="form-group"> 
-                                                <textarea class="form-control rounded bg-gray-100 py-3 border-0 shadow-sm" id="exampleFormControlTextarea1" rows="14" 
-                                                 placeholder="Hasil Konsultasi"></textarea>
-                                              </div>
-                                            <button type="submit" class="btn btn-oatas mr-4 shadow-sm">Simpan</button>
-                                        </div>
-                                       </div>
-                                   </div>
                             </div>
 
 
-                    </div> 
+                    </div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- ISI KONTENT --> 
                         </div>
-
-
-
-
-
-
-
-
-
                 </div>
                 <!-- /.container-fluid -->
  
@@ -227,7 +274,9 @@ export default {
         });
      let ea = 0;
      let duata = [] 
-     let posz = 7 
+     let posz = 7  // DATA UNTUK DITAMPILKAN
+
+
      let response = {
     "success": true,
     "data": [
@@ -431,9 +480,6 @@ export default {
                 })
 
         },
-    backMenu(){        
-        this.vform = 0;
-    },
     showAddCustomer(){
         this.cust = {};
         this.vform = 2;

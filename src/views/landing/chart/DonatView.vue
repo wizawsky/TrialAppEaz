@@ -74,9 +74,15 @@ import { DoughnutChart } from 'vue-chart-3';
         {
           data: val1.value,
           backgroundColor: val3.value,
+          borderWidth:0,
         },
       ],
     }));
+
+               let data1 =  [21,5,4];
+               let data2 =  ['Belum Ditangani', 'Therapist', 'Konsultasi Dokter'];
+               setdata(data1,data2) 
+               
     let datas = props.host+'chart/donut';
   axios.post(datas)
               .then(response => {   

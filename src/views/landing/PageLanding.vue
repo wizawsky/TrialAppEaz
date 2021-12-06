@@ -3,16 +3,16 @@
         href="https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!-- Page Wrapper -->
-    <div id="wrapper">   
+    <div id="wrapper" >   
         <!-- Sidebar -->
-        <ul :class="{collapse : menu == 'B'}" class=" navbar-nav bg-gradientz-secondary sidebar sidebar-white accordion" id="accordionSidebar">
+        <ul :class="{collapse : !menu}" class=" navbar-nav bg-gradientz-secondary sidebar sidebar-white accordion" id="accordionSidebar">
            
             <!-- Sidebar - Brand -->
             <router-link :to="{name: 'home'}" class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon "> 
                     <img :src="imgPackage" alt="Logo" style="width: 2.8rem;height: 3.3rem;"> 
                 </div>
-                <div class="sidebar-brand-text mx-1 align-items-center">{{ myVar }} <span class="small" style="font-size: 8px;">Aesthetic Clinics</span></div>  
+                <div class="sidebar-brand-text mx-1 align-items-center">{{ myVar }}  <span class="small" style="font-size: 8px;">Aesthetic Clinics</span></div>  
             </router-link>
 
 
@@ -22,48 +22,45 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-itemz nav-item">
-               <a @click="contentMenu = 0" href="#Dashboard" class="nav-link"  :class="{ aktif : contentMenu == 0 ,tidak : aktif!=1}"> 
+               <router-link :to="{ path: smenu.dashboard}"  class="nav-link"  :class="{ aktif : fpath == smenu.dashboard }"> 
                    <i class="fas fa-columns"></i> 
                     <span> Dashboard</span> 
-               </a>
+               </router-link>
             </li>
 
               <!-- Nav Item - Charts -->
             <li class="nav-itemz nav-item ">
-                <a @click="contentMenu = 2" href="#Customer"  class="nav-link" :class="{ aktif : contentMenu == 2 ,tidak : aktif!=1}"> 
+                <router-link :to="{ path: smenu.customer}"   class="nav-link" :class="{ aktif :  fpath == smenu.customer   }"> 
                         <i class="fas fa-user"></i> 
                     <span> Customer</span> 
-               </a>
-            </li>
-
-
-
+               </router-link>
+            </li> 
 
               <!-- Nav Item - Charts -->
             <li class="nav-itemz nav-item">
-                <a @click="contentMenu = 3" href="#KonsultasiDokter"  class="nav-link" :class="{ aktif : contentMenu == 3 ,tidak : aktif!=1}"> 
+                <router-link :to="{ path: smenu.konsultasi}"  class="nav-link" :class="{ aktif : fpath == smenu.konsultasi  }"> 
                    <i class="fas fa-fw fa-user-md"></i>
                     <span>Konsultasi Dokter</span> 
-               </a>
+                </router-link>
             </li>
 
                <!-- Nav Item - Tables -->
             <li class="nav-itemz nav-item">
-               <a @click="contentMenu = 4" href="#Therapist" class="nav-link" :class="{ aktif : contentMenu == 4 ,tidak : aktif!=1}"> 
+               <router-link :to="{ path: smenu.therapist}"  class="nav-link" :class="{ aktif : fpath == smenu.therapist  }"> 
                     <i class="fas fa-fw fa-user-nurse"></i>
                     <span>Therapist</span>
-                </a>
+                 </router-link>
             </li>
                <!-- Nav Item - Tables -->
             <li class="nav-itemz nav-item">
-                <a @click="contentMenu = 5" href="#Product" class="nav-link" :class="{ aktif : contentMenu == 5 ,tidak : aktif!=1}"> 
+                <router-link :to="{ path: smenu.product}" class="nav-link" :class="{ aktif : fpath == smenu.product  }"> 
                    <i class="fas fa-fw fa-project-diagram"></i>
                     <span>Product</span> 
-               </a>
+                </router-link>
             </li> 
 
      <li class="nav-itemz nav-item">
-                <a @click="contentMenu = 6" href="#PointOfSale"  class="nav-link collapsed" :class="{ aktif : aktif == 6 ,tidak : aktif!=1}" data-toggle="collapse" data-target="#collapsePages"
+                <a   class="nav-link collapsed" :class="{ aktif : aktif == 6 ,tidak : aktif!=1}" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-cash-register"></i>
                     <span>Point of Sale</span>
@@ -71,8 +68,8 @@
 
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded"> 
-                        <a @click="contentMenu = 6" href="#PointOfSale"  class="collapse-item"  >Dashboard POS</a>
-                        <a @click="contentMenu = 7" href="#Transaction"    class="collapse-item"  >Transaction</a> 
+                        <router-link :to="{ path: smenu.pointofsale}"     class="collapse-item"  >Dashboard POS </router-link>
+                        <router-link :to="{ path: smenu.transaction}"     class="collapse-item"  >Transaction </router-link>
                         <div class="collapse-divider"></div> 
                     </div>
                 </div>
@@ -86,12 +83,18 @@
                     <!-- fixed-top  -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 shadow" role='navigation'>
                         <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" @click="menuClick" class="btn btn-link  rounded-circle mr-3">
+                    <button id="sidebarToggleTop" @click="menu=!menu" class="btn btn-link  rounded-circle mr-3">
                         <i class="fa fa-bars text-biasa"></i>
                     </button>
 
                    
-                 <h4>{{title}} </h4>
+                        <h4 v-if="fpath==smenu.dashboard">Dashboard</h4>
+                        <h4 v-if="fpath== smenu.customer " >Customer</h4>
+                        <h4 v-if="fpath== smenu.therapist ">Therapist</h4>
+                        <h4 v-if="fpath== smenu.konsultasi ">Konsultasi</h4>
+                        <h4 v-if="fpath== smenu.product" >Product</h4>
+                        <h4 v-if="fpath== smenu.pointofsale ">Point Of Sale</h4>
+                        <h4 v-if="fpath== smenu.transaction ">Transaction</h4>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto"> 
@@ -106,8 +109,7 @@
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-
-                            <!-- Dropdown - Alerts -->
+ 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header bg-secondary" style="border: 0">
@@ -185,17 +187,19 @@
                     </ul> 
                     
                 </nav>  
-                        <content-dashboard v-if="contentMenu==0" /> 
-                        <content-customer v-if="contentMenu==2" /> 
-                        <content-therapist v-if="contentMenu==3" /> 
-                        <content-konsultasi v-if="contentMenu==4" /> 
-                        <content-product v-if="contentMenu==5" /> 
-                        <content-pos v-if="contentMenu==6" /> 
-                        <content-transaction v-if="contentMenu==7" /> 
 
 
-            </div>  
-            <foo-ter/>
+
+                        <content-dashboard v-if="fpath==smenu.dashboard" /> 
+                        <content-customer v-if="fpath== smenu.customer " /> 
+                        <content-therapist v-if="fpath== smenu.therapist " /> 
+                        <content-konsultasi v-if="fpath== smenu.konsultasi " /> 
+                        <content-product v-if="fpath== smenu.product" /> 
+                        <content-pos v-if="fpath== smenu.pointofsale " /> 
+                        <content-transaction v-if="fpath== smenu.transaction " /> 
+
+
+            </div>   
           </div> 
     </div> 
    <logout-modal/> 
@@ -203,44 +207,58 @@
         <script>  
  
         import ContentDashboard from '@/views/landing/ContentDashboard.vue' 
-        import ContentCustomer from '@/views/test/Indexia.vue' 
+        import ContentCustomer from '@/views/landing/ContentCustomerView.vue' 
         import ContentTherapist from '@/views/landing/ContentTherapistView.vue'
-        import ContentKonsultasi from '@/views/landing/ContentTherapistView.vue'
+        import ContentKonsultasi from '@/views/landing/ContentKonsultasiView.vue'
         import ContentProduct from '@/views/landing/ContentProductView.vue'
         import ContentPos from '@/views/landing/ContentPointOfSaleView.vue'
-        import ContentTransaction from '@/views/landing/ContentTransaction.vue'
-
-
-        import LogoutModal from '@/components/LogoutModal.vue' 
-        import FooTer from '@/components/Footer.vue'
+        import ContentTransaction from '@/views/landing/ContentTransaction.vue' 
+        import LogoutModal from '@/components/LogoutModal.vue'  
  
 
         export default { 
-          data() {
-            let myArray = document.title.split("-");
+
+        created(){
+            if(this.$route.path == "/landing"||this.$route.path == "/landing/"){
+                window.location.replace(this.$ownAddress+'landing/dashboard'); 
+            }
+
+        },
+          data() {                 
+            const smenu =
+            { 
+                dashboard:"/landing/dashboard",
+                customer:"/landing/customer",
+                therapist:"/landing/therapist",
+                konsultasi:"/landing/konsultasi",
+                product:"/landing/product",
+                pointofsale:"/landing/pointofsale",
+                transaction:"/landing/transaction",
+            };
+            console.log(this.$route.path)   
             return { 
+            smenu, 
+            aktif: "",
+            title : 'Landing Page',
             myVar: this.$appName,
             imgPackage: require('@/assets/'+'img/'+'logo1.png'), 
             name:'Tumijan Tamvan', 
             link:  this.$ownAddress, 
-            fotopp: require('@/assets/'+'img/undraw_profile.svg'),  
-            title: myArray[1],
-            menu: 'B',
-            contentMenu: 0,
+            fotopp: require('@/assets/'+'img/undraw_profile.svg'),   
+            menu: true, 
             }
-        }, 
-        methods:{
-            menuClick(){
-                if(this.menu =='A'){
-                this.menu = 'B' 
-                }else{
-                this.menu = 'A'
-                }
-            }
+        },  
+        computed:{  
+            fpath(){
+                  return this.$route.path
+            }, 
+
+             
         },
-        setup(){             
-        },
-          name:   "",
+        methods:{ 
+
+
+        },  
           components: { 
             ContentDashboard, 
             ContentProduct,
@@ -249,9 +267,9 @@
             ContentKonsultasi,
             ContentPos,
             ContentTransaction,
-            LogoutModal,
-            FooTer, 
-          }
+            LogoutModal, 
+          },
+
         }
         </script>
 

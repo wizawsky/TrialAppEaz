@@ -1,34 +1,17 @@
 <template>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-  
+     
                     <!-- Content Row -->
-                    <div class="row">
-
-                    <!--
-                        <div class="col-lg-12 mb-4">
-                        <button v-on:click="onProductAll" class="btn-sm btn btn-secondary">Lihat Semua Produk</button>
-                            &nbsp;&nbsp;
-                            <button v-on:click="onProductAdd"  class="btn-sm btn btn-secondary">Tambah Produk</button>
-                        &nbsp;&nbsp;
-                        <button v-on:click="onProductGet"  class="btn-sm btn btn-secondary">Lihat Produk</button> 
-
-                        </div>
-                         -->
-
-                        <!--
- 
-                            PRODUK ALL HERE 
-
-                         -->
-                    <div class="col-lg-12 mb-2"  v-if="productall">  
+                    <div class="row"  v-if="vform==0"> 
+                    <div class="col-lg-12 mb-2" >  
                         <div class="row d-flex justify-content-end">
                                 <div class="col-md-6 mb-2">
-                            <button class="btn btn-md btn-oatas shadow mb-2"  @click.prevent="onRefresh()">
+                            <button class="btn btn-md btn-oatas shadow-sm mb-2"  @click.prevent="onRefresh()">
                                 <i class="fa fa-sync-alt" aria-hidden="true"></i>
                             </button>
                             &nbsp; <div class="btn-group dropup mb-2">
-                                              <button type="button" class="btn btn-oatas btn-md dropdown-toggle shadow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              <button type="button" class="btn btn-oatas btn-md dropdown-toggle shadow-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                               <i class="fa fa-list-ul" aria-hidden="true"></i>  Per Page
                                               </button>
                                               <div class="dropdown-menu">
@@ -38,17 +21,11 @@
                                                 <a class="dropdown-item" href="#"  @click.prevent="perpage(25)" >1 - 25</a> 
                                               </div>
                                         </div>&nbsp;   
-                             <button class="btn btn-md btn-oatas shadow mb-2" v-on:click="onProductAdd">
+                             <button class="btn btn-md btn-oatas shadow-sm mb-2" v-on:click="showAddCustomer()"   data-toggle="modal" data-target="#exampleModalCenter" >
                                   <i class="far fa-plus-square" aria-hidden="true"></i>  Tambah
-                            </button> &nbsp;
-
-
-                            <button class="btn btn-md  btn-oatas shadow mb-2"  @click.prevent="test()">
-                                TEST
-                            </button>  
+                            </button>    
                             &nbsp; 
-                            <button class="btn btn-sm  btn-oatas shadow mb-2" v-if="sortby.loading" >
-
+                            <button class="btn btn-sm  btn-oatas shadow-sm mb-2" v-if="sortby.loading" > 
                              <div class="spinner-border spinner-border-sm mb-2" role="status">
                               <span class="sr-only">Loading...</span>
                             </div> Loading... 
@@ -73,8 +50,8 @@
                         </div>
 
                                 <div class="col-md-3"> 
-                        <div class="input-group shadow">
-                            <input type="text"  v-model="name" class="form-control bg-white border-0 small" placeholder="Produk Name..."
+                        <div class="input-group shadow-sm">
+                            <input type="text"  v-model="name" class="form-control bg-white border-0 small" placeholder="Therapist Name..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-white" type="button">
@@ -86,20 +63,17 @@
 
                         </div>
 
-                    <div class="col-lg-12 mb-4  border-0"  v-if="productall"> 
+                    <div class="col-lg-12 mb-4  border-0"  > 
                      <div class="table-responsive card shadow mb-4 border-0">
                                    <table class="table table-borderless border-0"   id="dataTable" width="100%" cellspacing="0">
                                     <thead class="card-header py-3 bg-oatas border-0 text-biasa">
                                         <tr>
-                                        <th class="text-center"><label>NO</label></th>
-                                        <th><label @click.prevent="sortBy('id')">ID</label></th>
-                                        <th><label @click.prevent="sortBy('name')">Name</label></th>
-                                        <th><label @click.prevent="sortBy('kode')">Kode</label></th>
-                                        <th><label @click.prevent="sortBy('harga')">Harga</label></th> 
-                                        <th><label @click.prevent="sortBy('stok')">Stok</label></th> 
-                                        <th><label @click.prevent="sortBy('persen')">Discount%</label></th> 
-                                        <th><label @click.prevent="sortBy('terjual')">Terjual</label></th> 
-                                        <th><label @click.prevent="sortBy('status')">Status</label></th> 
+                                        <th class="text-center"><label>NO</label></th> 
+                                        <th><label @click.prevent="sortBy('name')">Nama</label></th> 
+                                        <th><label @click.prevent="sortBy('stok')">Lorem Ipsum</label></th> 
+                                        <th><label @click.prevent="sortBy('persen')">No. HP</label></th> 
+                                        <th><label @click.prevent="sortBy('terjual')">Status</label></th>  
+                                        <th><label @click.prevent="sortBy('rating')">Rating</label></th>  
                                         <th><label>Aksi</label></th>  
                                         </tr>
                                     </thead>
@@ -108,157 +82,53 @@
                             <!--- GET DATA NOT FIRST TIME -->
                                 <tbody class="card-body text-biasa border-0">
                                      <tr v-for="(post, index) in filterProducts.slice(ffrom,fto)" :key="index" :class="{ 'border-top' : index != 0 }"> 
-                                    <td class="text-center">{{ index}}</td>
-                                    <td>&nbsp;{{ post.id }}</td>
-                                    <td>{{ post.nama }}</td> 
-                                    <td>{{ post.kode }}</td>
-                                    <td v-if="!post.persen">{{ post.harga }}</td>
-                                    <td v-if="post.persen"><del class="text-danger">{{ post.harga }}</del> {{post.hargap}}</td>
-                                    <td>{{ post.stok }}</td>
-                                    <td>{{ post.persen }}</td>
-                                    <td>{{ post.terjual }}</td>
-                                    <td>
-                                     
+                                    <td class="text-center">{{ index+ffrom+1}}</td> 
+                                    <td v-on:click="showEditCustomer(index)" >{{ post.nama }}</td> 
+                                    <td>{{ post.title }}</td> 
+                                    <td>{{ post.nohp }}</td>
+                                    <td>  
                                         <div class="btn-group">
-                                          <button type="button" class="btn btn-success btn-sm dropdown-toggle"  v-if="post.status == 'Aktif'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          
-                                <div class="spinner-border spinner-border-sm" role="status"  v-if="status.loading&&status.id==post.id">
-                                  <span class="sr-only">Loading...</span>
-                                </div>
-                                {{post.status}}
-                                          </button>
-
-                                           <button type="button" class="btn btn-danger btn-sm dropdown-toggle"  v-if="post.status == 'Nonaktif'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <div class="spinner-border spinner-border-sm" role="status"  v-if="status.loading&&status.id==post.id">
-                                          <span class="sr-only">Loading...</span>
-                                        </div>
-                                           {{post.status}}
+                                         {{post.status.split("-")[0]}} - &nbsp;<button type="button" class="btn btn-success btn-sm text-orange rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{post.status.split("-")[1]}}
                                           </button>
                                           <div class="dropdown-menu">
-                                            <a class="dropdown-item"  v-on:click="postSetStatus(post.id,'Aktif')" >Set Aktif</a> 
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item"  v-on:click="postSetStatus(post.id,'Nonaktif')">Set Nonaktif</a>
+                                            <a class="dropdown-item"  v-on:click="setStatus(index,'Therapist')" >Therapist</a>
+                                            <a class="dropdown-item"  v-on:click="setStatus(index,'Konsultasi Dokter')" >Konsultasi Dokter </a> 
+                                            <a class="dropdown-item"  v-on:click="setStatus(index,'Treatment')" >Treatment</a>
+                                            <a class="dropdown-item"  v-on:click="setStatus(index,'Selesai')" >Selesai</a>
                                           </div>
-                                        </div> 
- 
+                                        </div>  
+                                    </td>  
+                                    <td> 
+                                            <span class="fa fa-star" :class="{checked:post.rating>=1}"></span>
+                                            <span class="fa fa-star" :class="{checked:post.rating>=2}"></span>
+                                            <span class="fa fa-star" :class="{checked:post.rating>=3}"></span>
+                                            <span class="fa fa-star" :class="{checked:post.rating>=4}"></span>
+                                            <span class="fa fa-star" :class="{checked:post.rating>=5}"></span>
                                     </td>
                                      <td>  
                                         <div class="btn-group">
-                                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Produk
+                                          <button type="button" class="btn btn-oatas btn-sm text-orange rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-border-all"></i>
                                           </button>
                                           <div class="dropdown-menu">
-                                            <a class="dropdown-item"  v-on:click="onProductEdit(post.id)" >Edit </a>
+                                            <a class="dropdown-item"  v-on:click="showEditCustomer(index)" data-toggle="modal" data-target="#exampleModalCenter">Edit </a>
                                             <a class="dropdown-item"  v-on:click="onProductEdit(post.id)" >Preview </a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item"  @click.prevent="postDelete(post.id)">Delete</a>
                                           </div>
-                                        </div> 
-                                        &nbsp;&nbsp;
-
-                                        <div class="btn-group">
-                                          <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Stok
-                                          </button>
-                                          <div class="dropdown-menu">
-                                            <a class="dropdown-item"  v-on:click="onProductEdit(post.id)" >Add Stok</a> 
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item"  v-on:click="onProductEdit(post.id)">Sub Stok</a>
-                                          </div>
-                                        </div> 
+                                        </div>  
                                     </td>  
                                 </tr>  
                             </tbody> 
                             <!--- GET DATA NOT FIRST TIME --> 
                                 </table>
 
-                            </div>
-
-
-                    </div>
-
- 
-                         <!--
- 
-                            PRODUK ALL HERE 
-
-                         -->
- 
-
-
-
-
-                        <product-view-add  v-if="productadd"/> 
-                        <product-view-get  v-if="productget"/> 
-
-
-
-
-                         <!--
- 
-                            PRODUK EDIT HERE 
-
-                         -->
-                        <div class="col-lg-12 mb-4"  v-if="productedit"> 
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Edit Product ID {{post.id}}</h6>
-                                </div>
-                                <div class="card-body">  
-                        <form @submit.prevent="store">
-                            <div class="form-group">
-                                <label for="nama" class="">Nama</label>
-                                <input type="text" v-model="post.nama" class="form-control" placeholder="">
-                                <!-- validation -->                               
-                            </div>  
-
-                            <div class="form-group">
-                                <label for="kode" class="">Kode</label>
-                                <input type="text" v-model="post.kode"  class="form-control" placeholder="">
-                                <!-- validation -->                               
-                            </div>          
-                             
-
-                            <div class="form-group">
-                                <label for="harga" class="">Harga</label>
-                                <input type="number"  v-model="post.harga"  class="form-control" placeholder="">
-                                <!-- validation -->                               
-                            </div>
-
-                            <div class="form-group">
-                                <label for="content" class="">Deskripsi</label>
-                                <textarea class="form-control" rows="4"  v-model="post.deskripsi"  placeholder=""></textarea> 
-                            </div>
-
-
-                             <div class="custom-file">
-                                 <input type="file" class="custom-file-input" name="attachment[]" @change="onFileChange" multiple />
-    
-                              <label class="custom-file-label" for="customFile">Add Picture</label>
-                            </div>
-
-                                    <div class="preview" v-if="preview">
-                                        <p>Preview: </p>
-                                        <img :src="preview" width="200" height="150">
-                                    </div>
-
-                            <br>
-                            <br>
-                            <button type="submit" class="btn btn-secondary">SIMPAN</button>
-                        </form>    
-                                </div>
                             </div> 
-                            <p v-for="(file, index) in files" :key="index">
-                              {{ file.name }}
-                            </p> 
+                    </div> 
                         </div>
-                        
-                        <!--
+
  
-                            PRODUK EDIT HERE 
-
-                         -->
 
 
 
@@ -267,15 +137,6 @@
 
 
 
-
-
-
-
-
-
-
-                        <!-- ISI KONTENT --> 
-                        </div>
                 </div>
                 <!-- /.container-fluid -->
  
@@ -283,9 +144,7 @@
 </template> 
 <script>
 import { reactive  } from 'vue' 
-import axios from 'axios' 
-import ProductViewAdd from '@/views/landing/ProductAdd.vue' 
-import ProductViewGet from '@/views/landing/ProductGet.vue' 
+import axios from 'axios'  
 
 export default {
  
@@ -299,19 +158,107 @@ export default {
      let ea = 0;
      let duata = [] 
      let posz = 7  // DATA UNTUK DITAMPILKAN
-
-        axios.get('http://localhost:8000/api/produk/')
-            .then(response => {   
-             this.duata = response.data.data
-             ea = this.duata.length/this.posz
+     let response = {
+    "success": true,
+    "data": [
+        {
+            "id": 9,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 3,
+            "status": "Ruang 1-Available"
+        },
+        {
+            "id": 8,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 1,
+            "status": "Ruang 1-Available"
+        },
+        {
+            "id": 7,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 3,
+            "status": "Ruang 1-Available"
+        },
+        {
+            "id": 6,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 2,
+            "status": "Ruang 1-Available"
+        },
+        {
+            "id": 5,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 5,
+            "status": "Ruang 1-Available"
+        },
+        {
+            "id": 4,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 2,
+            "status": "Ruang 1-Available"
+        },
+        {
+            "id": 3,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 2,
+            "status": "Ruang 1-Available"
+        },
+        {
+            "id": 2,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 4,
+            "status": "Ruang 1-Available"
+        },
+        {
+            "id": 1,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 1,
+            "status": "Ruang 1-Available"
+        },
+        {
+            "id": 0,
+            "nama": "Jumados Santrinos",
+            "title": "Lorem Ipsum",
+            "alamat": "Jln Dimana",
+            "nohp": "089325983275289",
+            "rating": 2,
+            "status": "Ruang 1-Available"
+        }
+    ]
+} 
+             duata = response.data
+             ea = duata.length/posz
               if(ea>ea.toFixed(0)){
                 ea = ea + 1;
               }
-              this.ea = ea.toFixed(0);   
-
-            }).catch(error => {
-                console.log(error.response.data)
-            })
+              ea = ea.toFixed(0);   
 
 
     return {
@@ -324,27 +271,23 @@ export default {
 
 
       files: [],
-      dataz:[],
+      cust:{},
       status: { 
             loading: '',
             status: '', 
             id: 0,
       },
+      vform: 0,
       ea,
       posz,
       sortby: { 
-        loading: '',
+        loading: false,
         sort: '', 
         type: 'asc',  
       },
 
       post, 
-      duata,
-      preview: '', 
-      productadd: '',
-      productall: 'true',
-      productget: '',
-      productedit: '',
+      duata, 
     };
   },
 
@@ -354,7 +297,6 @@ export default {
             this.page = n
               this.ffrom = (n-1) * this.pageitem
               this.fto = this.ffrom + this.pageitem
-              console.log(this.ffrom)
 
     },
     perpage(n){
@@ -371,32 +313,12 @@ export default {
 
     },
     resetLoading(){
-        this.sortby.loading = ''
-        this.status.loading = ''
+        this.sortby.loading = false
+        this.status.loading = false
     }, 
-
-    test() {    
-              console.log(this.ea)
-        },
-    postSetStatus(idx,statusx){ 
-            this.status.loading = 'true';
-            this.status.id = idx;
-            axios.post('http://localhost:8000/api/admin/produk/edit',
-            {
-                id: idx,
-                status: statusx
-            }
-             )
-            .then(response => {  
-               this.onRefresh()
-              console.log(response.data) 
-            }).catch(error => {
-                console.log(error.response.data)
-            })
-        },
-
+ 
     sortBy(sort) { 
-          this.sortby.loading = "true"
+          this.sortby.loading = true
           if(this.sortby.type == 'desc'){
             this.sortby.type = 'asc'
           }else{
@@ -405,10 +327,10 @@ export default {
           this.sortby.sort = sort  
           this.onRefresh()
         },
+        
     onRefresh(){
-                axios.get('http://localhost:8000/api/produk/?sort='+this.sortby.sort+'&type='+this.sortby.type)
-                .then(response => { 
-                  //assign state posts with response data
+                axios.post(this.$laravel+'admin/customer/?sort='+this.sortby.sort+'&type='+this.sortby.type)
+                .then(response => {  
                   this.duata = response.data.data 
                   this.resetLoading()
                 }).catch(error => {
@@ -416,6 +338,18 @@ export default {
                 })
 
         },
+    backMenu(){        
+        this.vform = 0;
+    },
+    showAddCustomer(){
+        this.cust = {};
+        this.vform = 2;
+    },
+
+    showEditCustomer(i){
+        this.cust = this.duata[i]; 
+        this.vform = 1;
+    },
 
     filterProductsByName(products) {
       return this.name
@@ -425,32 +359,9 @@ export default {
           )
         : products;
     },
-
-    onFileChange(e) {
-      this.files = e.target.files;
-      this.preview = URL.createObjectURL(event.target.files[0]);  
-      console.log(this.files);
-    },
-    onProductAdd(){
-        this.productadd = "true";
-        this.productall = "";
-        this.productget = "";
-        this.productedit = "";
-    },
-    onProductAll(){
-        this.productadd = "";
-        this.productall = "true";
-        this.productget = "";
-        this.productedit = "";
-    },
-    onProductGet(){
-        this.productadd = "";
-        this.productall = "";
-        this.productget = "true";
-        this.productedit = "";
-    },
+ 
     onProductEdit(id){
-            axios.get('http://localhost:8000/api/produk/'+`${id}`)
+            axios.get(this.$laravel+'admin/customer/'+`${id}`)
             .then(response => {  
                 this.post.id = response.data.data.id
               this.post.nama = response.data.data.nama
@@ -462,18 +373,44 @@ export default {
 
             }).catch(error => {
                 console.log(error.response.data)
-            })
+            }) 
+    },
 
-        this.productadd = "";
-        this.productall = "";
-        this.productget = "";
-        this.productedit = "true"; 
+
+   setStatus(i,e){ 
+                    let custo = this.duata[i];                    
+                    custo.status = e; 
+                    this.update(custo)
+                      
+    },
+
+    update(data){
+          this.sortby.loading = true
+                    let custo = data;                     
+                           axios.post(this.$laravel+'admin/customer/update', {
+                            data: custo
+                }).then(response => {
+                        this.sortby.loading = false
+                        console.log(response)     
+                }).catch(error => { 
+                        console.log(error)     
+                })
+    },
+    add(data){
+          this.sortby.loading = true
+                    let custo = data;                     
+                     axios.post(this.$laravel+'admin/customer/add', {
+                            data: custo
+                }).then(response => {
+                        this.sortby.loading = false
+                        console.log(response)     
+                }).catch(error => { 
+                        console.log(error)     
+                })
     },
   },
 
-  components: { 
-            ProductViewAdd, 
-            ProductViewGet 
+  components: {  
    },computed: {
      filterProducts() {
       return this.filterProductsByName(this.duata);
